@@ -1,4 +1,5 @@
-using TodoListBlazor.Client.Pages;
+using Microsoft.EntityFrameworkCore;
+using TodoListBlazor.Client.DataAccess;
 using TodoListBlazor.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddDbContext<AppDbContext>();
 
 var app = builder.Build();
 
@@ -31,5 +34,11 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(TodoListBlazor.Client._Imports).Assembly);
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
 
 app.Run();
