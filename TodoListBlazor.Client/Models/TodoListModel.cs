@@ -1,6 +1,6 @@
 ﻿namespace TodoListBlazor.Client.Models;
 
-public class TodoList
+public class TodoListModel
 {
     public int Id { get; set; }
 

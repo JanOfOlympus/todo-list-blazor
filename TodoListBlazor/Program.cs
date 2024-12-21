@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TodoListBlazor.Client.DataAccess;
+using TodoListBlazor.Client.Services;
 using TodoListBlazor.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddScoped<ITodoListService, TodoListService>();
 
 builder.Services.AddDbContext<AppDbContext>();
 

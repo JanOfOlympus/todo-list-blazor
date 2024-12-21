@@ -5,7 +5,7 @@ namespace TodoListBlazor.Client.DataAccess;
 
 public class AppDbContext : DbContext
 {
-    public DbSet<TodoList> TodoLists { get; set; }
+    public DbSet<TodoListModel> TodoLists { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

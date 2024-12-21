@@ -1,6 +1,8 @@
-﻿namespace TodoListBlazor.Client.Services;
+﻿using TodoListBlazor.Client.Models;
+
+namespace TodoListBlazor.Client.Services;
 
 public interface ITodoListService
 {
-    Task<IList<TodoListService>> GetTodoLists();
+    IList<TodoListModel> GetTodoLists();
 }

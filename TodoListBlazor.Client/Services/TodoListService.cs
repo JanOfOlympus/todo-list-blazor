@@ -1,4 +1,5 @@
 ﻿using TodoListBlazor.Client.DataAccess;
+using TodoListBlazor.Client.Models;
 
 namespace TodoListBlazor.Client.Services;
 
@@ -11,8 +12,8 @@ public class TodoListService : ITodoListService
         _context = context;
     }
 
-    public Task<IList<TodoListService>> GetTodoLists()
+    public IList<TodoListModel> GetTodoLists()
     {
-        throw new NotImplementedException();
+        return _context.TodoLists.ToList();
     }
 }
