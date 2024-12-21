@@ -1,5 +1,5 @@
-using todo_list_blazor.Client.Pages;
-using todo_list_blazor.Components;
+using TodoListBlazor.Client.Pages;
+using TodoListBlazor.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +30,6 @@ app.UseAntiforgery();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(todo_list_blazor.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(TodoListBlazor.Client._Imports).Assembly);
 
 app.Run();
