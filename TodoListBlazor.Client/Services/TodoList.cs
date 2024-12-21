@@ -1,5 +1,5 @@
 ﻿namespace TodoListBlazor.Client.Services;
 
-public interface ITodoList
+public class TodoList : ITodoList
 {
 }
