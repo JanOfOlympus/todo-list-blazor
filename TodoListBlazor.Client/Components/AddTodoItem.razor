@@ -1,0 +1,25 @@
+﻿@using TodoListBlazor.Client.Models
+@inject ITodoListService _todoListService
+
+<EditForm Model="NewTodoItem" OnValidSubmit="AddItem" FormName="Todo">
+    <DataAnnotationsValidator />
+    <section>
+        <InputText @bind-Value="@NewTodoItem.Title" class="contrastbg" placeholder="Add a new todo item" />
+        <button type="submit">Add</button>
+    </section>
+</EditForm>
+
+@code {
+    private TodoItemModel NewTodoItem = new TodoItemModel();
+
+    [Parameter]
+    public EventCallback<TodoItemModel> OnItemAdded { get; set; }
+
+    private async Task AddItem()
+    {
+        await _todoListService.AddTodoItem(NewTodoItem);
+        await OnItemAdded.InvokeAsync(NewTodoItem);
+        NewTodoItem = new TodoItemModel();
+    }
+
+}

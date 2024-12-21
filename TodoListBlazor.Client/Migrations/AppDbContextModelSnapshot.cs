@@ -16,7 +16,7 @@ namespace TodoListBlazor.Client.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
-            modelBuilder.Entity("TodoListBlazor.Client.Models.TodoList", b =>
+            modelBuilder.Entity("TodoListBlazor.Client.Models.TodoItemModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -26,9 +26,8 @@ namespace TodoListBlazor.Client.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("State")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -36,7 +35,7 @@ namespace TodoListBlazor.Client.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoLists");
+                    b.ToTable("TodoItems");
                 });
 #pragma warning restore 612, 618
         }

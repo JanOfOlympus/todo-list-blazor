@@ -4,5 +4,9 @@ namespace TodoListBlazor.Client.Services;
 
 public interface ITodoListService
 {
-    IList<TodoListModel> GetTodoLists();
+    Task<IList<TodoItemModel>> GetTodoItemsAsync();
+
+    Task AddTodoItem(TodoItemModel todoList);
+
+    Task UpdateTodoItem(TodoItemModel todoItem);
 }

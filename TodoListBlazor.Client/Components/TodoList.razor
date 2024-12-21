@@ -1,7 +1,38 @@
 ﻿@page "/list"
+@using TodoListBlazor.Client.Enums
+@using TodoListBlazor.Client.Models
 @inject ITodoListService _todoListService
 
 <h3>TodoList</h3>
 
-@code {
+<SvgCheckboxResources />
+<div class="todo-list box">
+    <AddTodoItem OnItemAdded="@((item) => TodoItems.Add(item))" />
+    @foreach (var item in TodoItems)
+    {
+        <div class="todo">
+            <SvgCheckbox @bind-Value:get="@(item.State==TodoItemState.Completed)"
+                         @bind-Value:set="@((value) => ChangeStateAsync(item,value))"
+                         Url="@($"/items/{item.Id}")">
+                @item.Title
+            </SvgCheckbox>
+        </div>
+    }
+</div>
+
+@code{
+    private IList<TodoItemModel> TodoItems = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        TodoItems = await _todoListService.GetTodoItemsAsync();
+        await base.OnInitializedAsync();
+        // Your logic here
+    }
+
+    private async Task ChangeStateAsync(TodoItemModel item, bool value)
+    {
+        item.State = value ? TodoItemState.Completed : TodoItemState.Pending;
+        await _todoListService.UpdateTodoItem(item);
+    }
 }
